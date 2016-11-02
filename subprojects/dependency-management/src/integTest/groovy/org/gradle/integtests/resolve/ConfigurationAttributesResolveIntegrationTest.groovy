@@ -1262,7 +1262,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
             project(':a') {
                 configurations {
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
-                    _compileFreeDebug.attributeMatchingStrategy.attributeMatcher('flavor') {
+                    _compileFreeDebug.attributeMatchingStrategy.matcher('flavor') {
                             withDefaultValue {
                                 it // if no value is found for "flavor", use the requested value
                             }
@@ -1367,7 +1367,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
             project(':a') {
                 configurations {
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
-                    _compileFreeDebug.attributeMatchingStrategy.attributeMatcher('flavor') {
+                    _compileFreeDebug.attributeMatchingStrategy.matcher('flavor') {
                             withDefaultValue {
                                 it // if no value is found for "flavor", use the requested value
                             }
