@@ -627,4 +627,31 @@ task someTask(dependsOn: [someDep, someOtherDep])
         thrown(CircularReferenceException)
     }
 
+    @NotYetImplemented
+    @Issue("gradle/gradle#784")
+    def "bob"() {
+        buildFile << """
+            class B implements Serializable {}
+
+            class A extends DefaultTask {
+                @Input
+                B b
+
+                A() {
+                    outputs.upToDateWhen {
+                        false
+                    }
+                }
+            }
+
+            task t(type: A) {
+                b = new B()
+            }
+        """
+
+        expect:
+        executer.requireGradleDistribution().withTasks("t").withArguments("--no-daemon").run().assertTasksExecuted(":t")
+        executer.requireGradleDistribution().withTasks("t").withArguments("--no-daemon").run().assertTasksExecuted(":t")
+    }
+
 }
