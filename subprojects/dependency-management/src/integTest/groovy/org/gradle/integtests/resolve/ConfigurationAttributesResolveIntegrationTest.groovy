@@ -1259,13 +1259,15 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
         given:
         file('settings.gradle') << "include 'a', 'b'"
         buildFile << '''
+            import static org.gradle.api.artifacts.ConfigurationAttributeMatcher.*
+
             project(':a') {
                 configurations {
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
-                    _compileFreeDebug.attributeMatchingStrategy.matcher('flavor') {
-                            withDefaultValue {
-                                it // if no value is found for "flavor", use the requested value
-                            }
+                    _compileFreeDebug.resolutionStrategy.attributesMatching {
+                        matcher('flavor') {
+                            withDefaultValue ALWAYS_PROVIDE
+                        }
                     }
                 }
                 dependencies {
@@ -1364,13 +1366,14 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
         given:
         file('settings.gradle') << "include 'a', 'b', 'c'"
         buildFile << '''
+            import static org.gradle.api.artifacts.ConfigurationAttributeMatcher.*
             project(':a') {
                 configurations {
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
-                    _compileFreeDebug.attributeMatchingStrategy.matcher('flavor') {
-                            withDefaultValue {
-                                it // if no value is found for "flavor", use the requested value
-                            }
+                    _compileFreeDebug.resolutionStrategy.attributesMatching {
+                       matcher('flavor') {
+                            withDefaultValue ALWAYS_PROVIDE
+                       }
                     }
                 }
                 dependencies {
