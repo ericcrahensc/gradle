@@ -1266,7 +1266,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                         matcher('flavor') {
-                            withDefaultValue ALWAYS_PROVIDE
+                            defaultValue = ALWAYS_PROVIDE
                         }
                     }
                 }
@@ -1372,7 +1372,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                        matcher('flavor') {
-                            withDefaultValue ALWAYS_PROVIDE
+                            defaultValue = ALWAYS_PROVIDE
                        }
                     }
                 }
