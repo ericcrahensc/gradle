@@ -1264,7 +1264,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                         matcher('flavor') {
-                            matchAlways()
+                            optional()
                         }
                     }
                 }
@@ -1319,7 +1319,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                         matcher('flavor') {
-                            matchAlways()
+                            optional()
                         }
                     }
                 }
@@ -1374,10 +1374,10 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                         matcher('flavor') {
-                            matchAlways()
+                            optional()
                         }
                         matcher('buildType') {
-                            ignoreCase()
+                            scorer = { a,b -> a.equalsIgnoreCase(b)?0:-1 }
                         }
                     }
                 }
@@ -1483,7 +1483,7 @@ class ConfigurationAttributesResolveIntegrationTest extends AbstractIntegrationS
                     _compileFreeDebug.attributes(buildType: 'debug', flavor: 'free')
                     _compileFreeDebug.resolutionStrategy.attributesMatching {
                        matcher('flavor') {
-                            matchAlways()
+                            optional()
                        }
                     }
                 }
